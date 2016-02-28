@@ -16,13 +16,13 @@ public:
     TaggedValue(const TaggedValue&) = delete;
     TaggedValue(TaggedValue&&) = default;
     TaggedValue& operator=(const TaggedValue&) = delete;
-    TaggedValue& operator=(TaggedStirng&&) = default;
+    TaggedValue& operator=(TaggedValue&&) = default;
 
-    bool operator==(const TaggedValue rhs) const {
+    bool operator==(const TaggedValue& rhs) const {
         return value == rhs.value;
     }
 
-    bool operator>(const TaggedValue rhs) const {
+    bool operator<(const TaggedValue& rhs) const {
         return value > rhs.value;
     }
 

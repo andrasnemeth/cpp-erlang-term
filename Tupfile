@@ -1,0 +1,12 @@
+INCLUDE = -Iinclude
+CXXFLAGS = -std=c++14 -fdiagnostics-color -O0 -g3
+GTEST_LIBS = -lgtest_main -lgtest
+STD_LIBS = -lpthread
+
+BUILD_DIR = ./bin
+
+.gitignore
+
+: foreach test/*.cpp |> clang++ -c %f $(CXXFLAGS) $(INCLUDE) -o %o |> $(BUILD_DIR)/%B.o {test-objs}
+: {test-objs} |> clang++ %f $(GTEST_LIBS) $(STD_LIBS) -o %o |> $(BUILD_DIR)/unit-test
+: $(BUILD_DIR)/unit-test |> $(BUILD_DIR)/unit-test --gtest_color=yes |>
